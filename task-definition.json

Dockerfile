@@ -1,0 +1,7 @@
+# 1. Dockerfile
+FROM openjdk:17
+WORKDIR /app
+COPY . /app
+RUN chmod +x mvnw
+RUN ./mvnw package -DskipTests
+ENTRYPOINT ["java","-jar","./target/helloworld-0.0.1-SNAPSHOT.jar"]
