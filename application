@@ -1,0 +1,27 @@
+Dockerfile
+# Use the official maven/Java 17 image to create a build artifact.
+FROM maven:3.8.3-openjdk-17 as builder
+
+# Set the working directory in the image to /app
+WORKDIR /app
+
+# Copy the pom.xml file into the image
+COPY pom.xml .
+
+# Download dependencies as specified in the pom.xml file
+RUN mvn dependency:go-offline -B
+
+# Copy the rest of the application into the image
+COPY src /app/src
+
+# Build the application
+RUN mvn package
+
+# Use OpenJDK 17 for the runtime stage of the build
+FROM openjdk:17-jdk-slim
+
+# Copy the jar file from the builder stage
+COPY --from=builder /app/target/*.jar /app.jar
+
+# Set the startup command
+CMD ["java", "-jar", "/app.jar"]
