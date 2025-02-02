@@ -1,0 +1,30 @@
+json
+{
+  "containerDefinitions": [
+    {
+      "name": "testing-app-container",
+      "image": "aws_account_id.dkr.ecr.us-east-1.amazonaws.com/testing-app:latest",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "hostPort": 8080
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/testing-app",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ],
+  "family": "testing-app-task",
+  "networkMode": "awsvpc",
+  "executionRoleArn": "arn:aws:iam::aws_account_id:role/testing-app-ecs-execution-role",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512"
+}
