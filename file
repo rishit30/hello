@@ -1,0 +1,36 @@
+json
+# 3. task-definition.json
+{
+  "family": "testing-app-task",
+  "networkMode": "awsvpc",
+  "containerDefinitions": [
+    {
+      "name": "testing-app-container",
+      "image": "",
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "hostPort": 8080,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "entryPoint": [
+        "java",
+        "-jar",
+        "./target/helloworld-0.0.1-SNAPSHOT.jar"
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/testing-app",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ],
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512"
+}
