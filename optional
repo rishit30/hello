@@ -1,0 +1,20 @@
+{
+    "cluster": "testing-app-cluster",
+    "serviceName": "testing-app-service",
+    "taskDefinition": "testing-app-task",
+    "desiredCount": 1,
+    "networkConfiguration": {
+        "awsvpcConfiguration": {
+            "subnets": ["subnet-12345678", "subnet-12345679"], 
+            "securityGroups": ["sg-12345678"],
+            "assignPublicIp": "ENABLED"
+        }
+    },
+    "loadBalancers": [
+        {
+            "targetGroupArn": "arn:aws:elasticloadbalancing:region:account-id:targetgroup/target-group-name/id",
+            "containerName": "testing-app-container",
+            "containerPort": 8080
+        }
+    ]
+}
