@@ -1,15 +1,15 @@
-json
 {
   "family": "testing-app-task",
   "networkMode": "awsvpc",
   "containerDefinitions": [
     {
       "name": "testing-app-container",
-      "image": "${aws_ecr_repository.testing-app_repo.repository_url}:latest",
-      "essential": true,
+      "image": "",
       "portMappings": [
         {
-          "containerPort": 8080
+          "containerPort": 8080,
+          "hostPort": 8080,
+          "protocol": "tcp"
         }
       ],
       "logConfiguration": {
@@ -19,10 +19,13 @@ json
           "awslogs-region": "us-east-1",
           "awslogs-stream-prefix": "ecs"
         }
-      }
+      },
+      "essential": true
     }
   ],
-  "requiresCompatibilities": ["FARGATE"],
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
   "cpu": "256",
   "memory": "512"
 }
