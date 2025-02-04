@@ -1,14 +1,16 @@
-json
 {
+  "family": "testing-app-task",
+  "networkMode": "awsvpc",
   "containerDefinitions": [
     {
       "name": "testing-app-container",
-      "image": "aws_account_id.dkr.ecr.us-east-1.amazonaws.com/testing-app:latest",
+      "image": "337909741523.dkr.ecr.us-east-1.amazonaws.com/testing-app:latest",
       "essential": true,
       "portMappings": [
         {
           "containerPort": 8080,
-          "hostPort": 8080
+          "hostPort": 8080,
+          "protocol": "tcp"
         }
       ],
       "logConfiguration": {
@@ -21,9 +23,6 @@ json
       }
     }
   ],
-  "family": "testing-app-task",
-  "networkMode": "awsvpc",
-  "executionRoleArn": "arn:aws:iam::aws_account_id:role/testing-app-ecs-execution-role",
   "requiresCompatibilities": ["FARGATE"],
   "cpu": "256",
   "memory": "512"
