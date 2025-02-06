@@ -35,7 +35,7 @@ name: Deploy to ECS
           id: task-def
           uses: aws-actions/amazon-ecs-render-task-definition@v1
           with:
-            task-definition: .github/ecs-task-definition.json
+            task-definition: ecs-config/ecs-configtask-definition.json
             container-name: testing-app-container
             image: ${{ steps.build-image.outputs.image }}
 
