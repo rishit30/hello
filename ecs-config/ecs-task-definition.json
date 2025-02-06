@@ -1,0 +1,29 @@
+{
+      "family": "testing-app-task",
+      "networkMode": "awsvpc",
+      "requiresCompatibilities": ["FARGATE"],
+      "cpu": "256",
+      "memory": "512",
+      "executionRoleArn": "arn:aws:iam::337909741523:role/testing-app-ecs-execution-role",
+      "containerDefinitions": [
+        {
+          "name": "testing-app-container",
+          "image": "testing-app:latest",
+          "portMappings": [
+            {
+              "containerPort": 8080,
+              "hostPort": 8080,
+              "protocol": "tcp"
+            }
+          ],
+          "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+              "awslogs-group": "/ecs/testing-app",
+              "awslogs-region": "us-east-1",
+              "awslogs-stream-prefix": "ecs"
+            }
+          }
+        }
+      ]
+    }
