@@ -1,11 +1,10 @@
 name: Deploy to ECS
 
-    on:
-      push:
+on:
+    push:
         branches:
-          - master
-
-    jobs:
+            - master
+jobs:
       deploy:
         runs-on: ubuntu-latest
 
