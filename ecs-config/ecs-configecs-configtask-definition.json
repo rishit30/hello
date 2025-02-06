@@ -1,0 +1,16 @@
+{
+          "containerDefinitions": [{
+            "name": "testing-app-container",
+            "image": "${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/testing-app:latest",
+            "essential": true,
+            "memory": 512,
+            "cpu": 256,
+            "portMappings": [{
+              "containerPort": 8080,
+              "hostPort": 8080
+            }]
+          }],
+          "family": "testing-app-task",
+          "networkMode": "awsvpc",
+          "executionRoleArn": "${EXECUTION_ROLE_ARN}"
+        }
