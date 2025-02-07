@@ -1,7 +1,5 @@
 FROM openjdk:17
-    WORKDIR /app
-    COPY .mvn/ .mvn
-    COPY mvnw pom.xml ./
-    RUN ./mvnw dependency:go-offline
-    COPY src ./src
-    CMD ["./mvnw", "spring-boot:run"]
+WORKDIR /app
+COPY ./target/my-app-1.0-SNAPSHOT.jar /app
+EXPOSE 8080
+CMD ["java", "-jar", "/app/my-app-1.0-SNAPSHOT.jar"]
