@@ -1,7 +1,5 @@
 FROM openjdk:17
-    WORKDIR /app
-    COPY .mvn/ .mvn
-    COPY mvnw pom.xml ./
-    RUN ./mvnw dependency:go-offline
-    COPY src ./src
-    CMD ["./mvnw", "spring-boot:run"]
+    COPY . /usr/src/app
+    WORKDIR /usr/src/app
+    RUN ./mvnw package
+    ENTRYPOINT ["java","-jar","target/helloworld-0.0.1-SNAPSHOT.jar"]
