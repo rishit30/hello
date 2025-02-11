@@ -1,0 +1,19 @@
+{
+     "family": "my-task-definition",
+     "networkMode": "bridge",
+     "containerDefinitions": [
+       {
+         "name": "my-container",
+         "image": "my-ecr-repo:latest",
+         "essential": true,
+         "portMappings": [
+           {
+             "containerPort": 8080,
+             "hostPort": 8080
+           }
+         ],
+         "memory": 512,
+         "cpu": 256
+       }
+     ]
+   }
